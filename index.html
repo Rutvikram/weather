@@ -9,6 +9,8 @@
 </head>
 
 <body>
+  <img class="bg-img" src="./images/download.gif" >
+  <div class="cercle"></div>
   <div class="card">
     <div class="search">
       <input type="text" placeholder="Enter City Name" spellcheck="false">
@@ -46,14 +48,16 @@
     // const apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=junagadh";
     const apiurl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
     const searchBox = document.querySelector(".search>input")
+    // const sun = document.querySelector(".cercle")
     const searchBtn = document.querySelector(".search>button")
     const weatherIcon = document.querySelector(".weather-icon")
-
+    
     async function checkWeather(city) {
       const response = await fetch(apiurl + city + `&appid=${apikey}`);
       if (response.status == 404) {
         document.querySelector(".error").style.display = "block";
         document.querySelector(".weather").style.display = "none";
+        
       } else {
         var data = await response.json();
         console.log(data);
@@ -61,6 +65,7 @@
         document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "&#8451;";
         document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
         document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+        document.querySelector(".cercle").style.display = "block";
 
         if (data.weather[0].main == "Clouds") {
           weatherIcon.src = "./images/clouds.png"
@@ -81,9 +86,11 @@
 
 
     }
-
+    
     searchBtn.addEventListener("click", () => {
       checkWeather(searchBox.value);
+
+      
     })
 
 
