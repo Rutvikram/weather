@@ -66,6 +66,7 @@
         document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
         document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
         document.querySelector(".cercle").style.display = "block";
+        document.querySelector(".card").style.height= "80vh";
 
         if (data.weather[0].main == "Clouds") {
           weatherIcon.src = "./images/clouds.png"
